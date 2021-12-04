@@ -59,7 +59,7 @@ db = Conexao('data.db') #instancia classe conexao para manuseio do banco de dado
 senha = senha_criptografa('123456') #criptografa senha
 db.inserir(f"INSERT INTO usuarios (usuario, senha) VALUES ('Maria', '{senha}')") #insere usuario
 
-gprint(db.consultar('select * from usuarios')) #mostra todos usuarios
+print(db.consultar('select * from usuarios')) #mostra todos usuarios
 
 dado = db.consultar("select senha from usuarios where usuario like 'hebert'") #captura senha do usuario pesquisado
 
