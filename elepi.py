@@ -1,17 +1,12 @@
 #import para verificacao do Arquivo do Banco de Dados
 import os
-
-#criptografia da senha do usuario
-from passlib.hash import pbkdf2_sha256
-from sqlalchemy.orm import session
+from datetime import datetime
 
 #import do Arquivo models.py
 import models as db
+db.Base.metadata.create_all(db.engine)
 
-from sqlite3 import Error
-
-
-if not os.path.isfile('./data/data.db'):
+"""if not os.path.isfile('./data/data.db'):
     print('Banco de dados não encontrado.')
     print('Criando novo Banco de dados...')
 
@@ -21,7 +16,10 @@ if not os.path.isfile('./data/data.db'):
     except Error as erro:
         print('inicio erro banco')
         print(erro)
-        print('fim erro banco')
+        print('fim erro banco')"""
 
+db.insere_usuario('hebert', '123456')
 
-db.usuario_inserir('hebert', '123456')
+if db.valida_usuario('hebert', '123456'):
+    db.insere_departamento('Padaria')
+    db.insere_funcionario('Joaoasdfdfdas','1', db.formata_data('01/09/2021'))
