@@ -77,7 +77,7 @@ def insere_usuario(usuario, senha):
         print('insere usuario: False')
         return False
 
-    try:
+    try: #insere ususario
         session.add(usuario)
         session.commit()
         print('insere usuario: True')
@@ -122,7 +122,7 @@ def insere_departamento(departamento):
         print('insere departamento: False')
         return False
 
-    try:
+    try: #insere departamento
         session.add(departamento)
         session.commit()
         print('insere departamento: True')
@@ -144,10 +144,10 @@ def insere_funcionario(nome, departamento_id, data_admissao = date.today()):
     funcionario = Funcionarios(nome = nome, data_admissao = data_admissao, departamento_id = departamento.id_departamento)
 
     if session.query(Departamentos).filter_by(id_departamento = departamento.id_departamento).one_or_none(): #retorna False se departamento nao existir
-        if session.query(Funcionarios).filter_by(nome = funcionario.nome).one_or_none():
+        if session.query(Funcionarios).filter_by(nome = funcionario.nome).one_or_none(): #retorna False se funcionario ja existir
             print('insere funcionario: False')
             return False
-        else:
+        else: #insere funcionario se nao existir
             try:
                 session.add(funcionario)
                 session.commit()
