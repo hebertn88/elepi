@@ -14,6 +14,8 @@ def insere_usuario(usuario, senha):
     senha = pbkdf2_sha256.hash(senha) #criptografa senha
     usuario = Usuarios(usuario = usuario, senha = senha)
     
+    with Session(engine) as session:
+        
     if db.session.query(Usuarios).filter_by(usuario = usuario.usuario).one_or_none(): #retorna False se usuario ja existir
         print('insere usuario: False')
         return False

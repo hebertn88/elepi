@@ -1,7 +1,7 @@
 from utils import *
 
 
-class Usuarios(db.Base):
+class Usuarios(Base):
     __tablename__ = 'usuarios'
     
     id_usuario = Column(Integer, primary_key = True)
@@ -9,14 +9,14 @@ class Usuarios(db.Base):
     senha = Column(String, nullable = False)
 
 
-class Departamentos(db.Base):
+class Departamentos(Base):
     __tablename__ = 'departamentos'
     
     id_departamento = Column(Integer, primary_key = True)
     nome = Column(String, nullable = False, unique = True)
 
 
-class Funcionarios(db.Base):
+class Funcionarios(Base):
     __tablename__ = 'funcionarios'
 
     id_funcionario = Column(Integer, primary_key = True)
@@ -26,7 +26,7 @@ class Funcionarios(db.Base):
     departamento_id = Column(Integer, ForeignKey('departamentos.id_departamento'))
 
 
-class Epis(db.Base):
+class Epis(Base):
     __tablename__ = 'epis'
 
     id_epi = Column(Integer, primary_key = True)
@@ -36,7 +36,7 @@ class Epis(db.Base):
     estoque_usados = Column(Integer,  nullable = False, default = 0)
 
 
-class EpisDepartamentos(db.Base):
+class EpisDepartamentos(Base):
     __tablename__ = 'epis_departamentos'
 
     id_epi_departamento = Column(Integer, primary_key = True)
@@ -45,7 +45,7 @@ class EpisDepartamentos(db.Base):
     vida_util = Column(Integer,  nullable = False, default = 0)
 
 
-class EpisMovimentacao(db.Base):
+class EpisMovimentacao(Base):
     __tablename__ = 'epis_movimentacao'
 
     id_movimento = Column(Integer, primary_key = True)
@@ -58,14 +58,14 @@ class EpisMovimentacao(db.Base):
     valor_custo = Column(Float,  nullable = False, default = 0)
 
 
-class MotivosDevolucao(db.Base):
+class MotivosDevolucao(Base):
     __tablename__ = 'motivos_devolucao'
 
     id_motivo = Column(Integer, primary_key = True)
     descricao = Column(String, nullable = False, unique = True)
     
 
-class FuncionariosEpis(db.Base):
+class FuncionariosEpis(Base):
     __tablename__ = 'funcionarios_epis'
 
     id_funcionarios_epis = Column(Integer, primary_key = True)
@@ -75,5 +75,4 @@ class FuncionariosEpis(db.Base):
     data_devolucao = Column(Date)
     motivo_id = Column(Integer, ForeignKey('motivos_devolucao.id_motivo'))
 
-
-db.create_all()
+Base.metadata.create_all(engine)

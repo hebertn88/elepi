@@ -1,6 +1,13 @@
 from utils import *
 from models import *
-from control import *
+#from control import *
+
+
+with Session(engine) as s:
+    user = Usuarios(usuario = 'hebert', senha = '123456')
+    s.add(user)
+    s.commit()
+
 
 #        self.Base.metadata.create_all(self.engine)
 
@@ -18,6 +25,8 @@ from control import *
         print('fim erro banco')"""
 
 
+
+"""
 insere_usuario('eldorado', '123456')
 
 if valida_usuario('eldorado', '123456'):
@@ -26,4 +35,4 @@ if valida_usuario('eldorado', '123456'):
     insere_epi('Camiseta Branca P', 25.0, 10)
     insere_epi('Camiseta Branca M', 25.0, 10)
     associa_epi_departamento(1, 1, 18)
-    insere_motivo('fim da vida util')
+    insere_motivo('fim da vida util')"""
